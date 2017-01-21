@@ -22,10 +22,10 @@ public class QueryBuilder {
 
     private WebPage webpage;
 
-    private List<String> courtArray;
-    private List<String> topicArray;
-    private List<String> queryArray;
-    private List<Pagination> paginationArray;
+    private final List<String> courtArray;
+    private final List<String> topicArray;
+    private final List<String> queryArray;
+    private final List<Pagination> paginationArray;
 
     public List<String> getQueryArray() {
         return queryArray;
