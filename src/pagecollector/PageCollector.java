@@ -38,9 +38,7 @@ public class PageCollector {
             webPage.getDocumentFromWeb();
             
             QueryBuilder queryBuilder = new QueryBuilder(webPage);
-            
-            //get data in paragraph tags
-            //System.out.println(webPage.getDocument().getElementsByTag("p"));
+
             
         } catch (Exception ex) {
             Logger.getLogger(PageCollector.class.getName()).log(Level.SEVERE, null, ex);

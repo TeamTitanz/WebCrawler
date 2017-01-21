@@ -47,6 +47,10 @@ public class QueryBuilder {
 
     }
 
+    public List<Pagination> getPaginationArray() {
+        return paginationArray;
+    }
+
     public WebPage getWebpage() {
         return webpage;
     }

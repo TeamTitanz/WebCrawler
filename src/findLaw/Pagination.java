@@ -22,47 +22,61 @@ import org.jsoup.select.Elements;
 public class Pagination {
 
     private WebPage webPage;
-    private List<String> pages;
+    private List<String> pagesList;
+    private List<CaseLaw> caseLawList;
     private int pageCount = 1;
 
     public Pagination(WebPage webPage) throws Exception {
+
         this.webPage = webPage;
 
-        pages = new ArrayList<String>();
+        pagesList = new ArrayList<String>();
+        caseLawList = new ArrayList<CaseLaw>();
 
+        createPageList(webPage);
+
+        getCaseLawUrlList();
+
+    }
+
+    public void getCaseLawUrlList() throws Exception {
+
+        for (String url : pagesList) {
+            Domain domain = new Domain(url);
+            Anchor anchor = new Anchor(domain, url);
+            WebPage webPage = new WebPage(anchor);
+            webPage.getDocumentFromWeb();
+
+            CaseLaw caseLaw = new CaseLaw(webPage);
+            
+            caseLawList.add(caseLaw);
+
+        }
+
+    }
+
+    public void createPageList(WebPage webPage) {
         String pageSelect = webPage.getDocument().getElementsByClass("pagecount").toString();
 
         Document document = Jsoup.parse(pageSelect);
         Elements options = document.select("strong");
-        
-
 
         for (Element element : options.subList(1, options.size())) {
 
             pageCount = Integer.parseInt(element.text());
 
         }
-        for (int i = 1; i < pageCount+1; i++) {
-            
+        for (int i = 1; i < pageCount + 1; i++) {
+
             String link = webPage.getAnchor().getAnchorUrl();
             link += "&" + "pgnum=" + i;
-            pages.add(link);
-            
-        }
-        
-        String url ="http://caselaw.findlaw.com/summary/search?court=us-supreme-court&topic=cs_1&pgnum=1";
-        
-        Domain domain = new Domain(url);
-            Anchor anchor = new Anchor(domain, url);
-            WebPage webPage2 = new WebPage(anchor);
-            webPage2.getDocumentFromWeb();
-            
-            CaseLaw queryBuilder = new CaseLaw(webPage2);
+            pagesList.add(link);
 
+        }
     }
 
     public List<String> getPages() {
-        return pages;
+        return pagesList;
     }
 
 }

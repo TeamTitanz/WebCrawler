@@ -33,8 +33,6 @@ public class DetailedCaseLaw {
         Document document = Jsoup.parse(buttonText);
         Elements options = document.select("a[href]");
         
-        System.out.println(buttonText);
-
         for (Element element : options) {
 
             detailedCaseLink = (element.attr("href"));
