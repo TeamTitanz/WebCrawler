@@ -19,7 +19,7 @@ public class DBHandler {
     //use to write data to db
     public static int setData(String query, Connection connection) throws SQLException{
         java.sql.Statement stm =  connection.createStatement();
-        int res = stm.executeUpdate(query);
+        int res = stm.executeUpdate(query , stm.RETURN_GENERATED_KEYS);
         return res;
     }
 

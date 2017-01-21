@@ -12,13 +12,15 @@ package models;
 public class Judge {
     private int id;
     private int caseId;
+    private String name;
 
     public Judge() {
     }
 
-    public Judge(int id, int caseId) {
+    public Judge(int id, int caseId, String name) {
         this.id = id;
         this.caseId = caseId;
+        this.name = name;
     }
 
     /**
@@ -48,6 +50,22 @@ public class Judge {
     public void setCaseId(int caseId) {
         this.caseId = caseId;
     }
+
+    /**
+     * @return the name
+     */
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * @param name the name to set
+     */
+    public void setName(String name) {
+        this.name = name;
+    }
+    
+    
     
     
 }
