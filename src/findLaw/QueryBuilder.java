@@ -40,7 +40,11 @@ public class QueryBuilder {
         paginationArray = new ArrayList<Pagination>();
 
         createCourtList(webpage);
-        createTopicList(webpage);
+        
+        //manually set the Topics to cs_15 = Consumer Protection Law and 
+        //createTopicList(webpage);
+        topicArray.add("cs_15");
+        
         createQueryList();
 
         getPaginatedUrlList();
