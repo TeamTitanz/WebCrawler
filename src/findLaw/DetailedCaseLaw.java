@@ -15,7 +15,7 @@ import org.jsoup.select.Elements;
 
 /**
  *
- * @author ASUS-PC
+ * @author Keet Malin Sugathadasa
  */
 public class DetailedCaseLaw {
     

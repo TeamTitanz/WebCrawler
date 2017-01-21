@@ -16,9 +16,9 @@ import models.Domain;
 
 /**
  *
- * @author ASUS-PC
+ * @author Keet Malin Sugathadasa
  */
-public class QueryBuilder {
+public final class QueryBuilder {
 
     private WebPage webpage;
 
@@ -34,10 +34,10 @@ public class QueryBuilder {
     public QueryBuilder(WebPage webpage) throws Exception {
         this.webpage = webpage;
 
-        courtArray = new ArrayList<String>();
-        topicArray = new ArrayList<String>();
-        queryArray = new ArrayList<String>();
-        paginationArray = new ArrayList<Pagination>();
+        courtArray = new ArrayList<>();
+        topicArray = new ArrayList<>();
+        queryArray = new ArrayList<>();
+        paginationArray = new ArrayList<>();
 
         createCourtList(webpage);
         
