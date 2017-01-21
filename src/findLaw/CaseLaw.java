@@ -23,15 +23,60 @@ public class CaseLaw {
 
     private WebPage webPage;
     private List<String> caseList;
+    private String detailedCaseLawUrl;
 
     public CaseLaw(WebPage webPage) throws Exception {
 
         this.webPage = webPage;
-        
-        caseList = new ArrayList<String>();
 
-        String caseLawTable = webPage.getDocument().getElementById("srpcaselaw").toString();
+        caseList = new ArrayList<String>();
+        detailedCaseLawUrl = "";
+
+        createCaseList(webPage);
+        setDetailedCaseLawUrl();
+
+    }
+
+    private void setDetailedCaseLawUrl() throws Exception {
+
+        for (String url : caseList) {
+            Domain domain = new Domain(url);
+            Anchor anchor = new Anchor(domain, url);
+            WebPage webPage = new WebPage(anchor);
+            webPage.getDocumentFromWeb();
+
+            detailedCaseLawUrl = getDetailedCaseLawUrl(webPage);
+            
+            System.out.println(url);
+            System.out.println(detailedCaseLawUrl);
+            System.out.println("---");
+            
+
+        }
+
+    }
+
+    private String getDetailedCaseLawUrl(WebPage webPage) {
+
+        String buttonText = webPage.getDocument().getElementsByClass("btn_read").toString();
+
+        Document document = Jsoup.parse(buttonText);
+        Elements options = document.select("a[href]");
         
+        String link = "";
+
+        for (Element element : options) {
+
+            link = (element.attr("href"));
+
+        }
+        return link;
+        
+    }
+
+    private void createCaseList(WebPage webPage) {
+        String caseLawTable = webPage.getDocument().getElementById("srpcaselaw").toString();
+
         Document document = Jsoup.parse(caseLawTable);
         Elements options = document.select("a[href]");
 
@@ -40,19 +85,6 @@ public class CaseLaw {
             caseList.add(element.attr("href"));
 
         }
-//        System.out.println(caseList);
-
-        
-        
-                String url ="http://caselaw.findlaw.com/summary/opinion/us-supreme-court/2016/06/20/276801.html";
-        
-        Domain domain = new Domain(url);
-            Anchor anchor = new Anchor(domain, url);
-            WebPage webPage2 = new WebPage(anchor);
-            webPage2.getDocumentFromWeb();
-            
-            DetailedCaseLaw queryBuilder = new DetailedCaseLaw(webPage2);
-
     }
 
 }

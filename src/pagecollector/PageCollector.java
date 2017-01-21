@@ -37,6 +37,7 @@ public class PageCollector {
             WebPage webPage = new WebPage(anchor);
             webPage.getDocumentFromWeb();
             
+            //by this, it will print the Case URl, and the detiled case URL
             QueryBuilder queryBuilder = new QueryBuilder(webPage);
 
             
