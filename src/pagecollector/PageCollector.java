@@ -5,6 +5,7 @@
  */
 package pagecollector;
 
+import findLaw.QueryBuilder;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -28,13 +29,18 @@ public class PageCollector {
      */
     public static void main(String[] args) {
         try {
-            Domain domain = new Domain("http://www.jsoup.org");
-            Anchor anchor = new Anchor(domain, "http://www.jsoup.org");
+            
+            String url ="http://caselaw.findlaw.com";
+            
+            Domain domain = new Domain(url);
+            Anchor anchor = new Anchor(domain, url);
             WebPage webPage = new WebPage(anchor);
             webPage.getDocumentFromWeb();
             
+            QueryBuilder queryBuilder = new QueryBuilder(webPage);
+            
             //get data in paragraph tags
-            System.out.println(webPage.getDocument().getElementsByTag("p"));
+            //System.out.println(webPage.getDocument().getElementsByTag("p"));
             
         } catch (Exception ex) {
             Logger.getLogger(PageCollector.class.getName()).log(Level.SEVERE, null, ex);
