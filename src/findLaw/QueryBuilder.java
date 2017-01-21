@@ -25,6 +25,7 @@ public class QueryBuilder {
     private List<String> courtArray;
     private List<String> topicArray;
     private List<String> queryArray;
+    private List<Pagination> paginationArray;
 
     public List<String> getQueryArray() {
         return queryArray;
@@ -36,18 +37,41 @@ public class QueryBuilder {
         courtArray = new ArrayList<String>();
         topicArray = new ArrayList<String>();
         queryArray = new ArrayList<String>();
+        paginationArray = new ArrayList<Pagination>();
 
         createCourtList(webpage);
         createTopicList(webpage);
         createQueryList();
 
-        String url = "http://caselaw.findlaw.com/summary/search?court=us-supreme-court&topic=cs_1";
-        Domain domain = new Domain(url);
-        Anchor anchor = new Anchor(domain, url);
-        WebPage webPage = new WebPage(anchor);
-        webPage.getDocumentFromWeb();
+        getPaginatedUrlList();
 
-        Pagination queryBuilder = new Pagination(webPage);
+    }
+
+    public WebPage getWebpage() {
+        return webpage;
+    }
+
+    public List<String> getCourtArray() {
+        return courtArray;
+    }
+
+    public List<String> getTopicArray() {
+        return topicArray;
+    }
+
+    public void getPaginatedUrlList() throws Exception {
+
+        for (String url : queryArray) {
+            
+            Domain domain = new Domain(url);
+            Anchor anchor = new Anchor(domain, url);
+            WebPage webPage = new WebPage(anchor);
+            webPage.getDocumentFromWeb();
+
+            Pagination pagination = new Pagination(webPage);
+            paginationArray.add(pagination);
+
+        }
 
     }
 
@@ -92,8 +116,5 @@ public class QueryBuilder {
         }
     }
 
-    public void getPageNumbers(String url) {
-
-    }
 
 }
