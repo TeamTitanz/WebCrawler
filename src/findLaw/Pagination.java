@@ -57,7 +57,7 @@ public class Pagination {
             WebPage webPage2 = new WebPage(anchor);
             webPage2.getDocumentFromWeb();
             
-            CaseLaw queryBuilder = new CaseLaw(webPage);
+            CaseLaw queryBuilder = new CaseLaw(webPage2);
 
     }
 

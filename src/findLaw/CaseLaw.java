@@ -7,6 +7,8 @@ package findLaw;
 
 import java.util.ArrayList;
 import java.util.List;
+import models.Anchor;
+import models.Domain;
 import models.WebPage;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -22,7 +24,7 @@ public class CaseLaw {
     private WebPage webPage;
     private List<String> caseList;
 
-    public CaseLaw(WebPage webPage) {
+    public CaseLaw(WebPage webPage) throws Exception {
 
         this.webPage = webPage;
         
@@ -38,7 +40,18 @@ public class CaseLaw {
             caseList.add(element.attr("href"));
 
         }
-        System.out.println(caseList);
+//        System.out.println(caseList);
+
+        
+        
+                String url ="http://caselaw.findlaw.com/summary/opinion/us-supreme-court/2016/06/20/276801.html";
+        
+        Domain domain = new Domain(url);
+            Anchor anchor = new Anchor(domain, url);
+            WebPage webPage2 = new WebPage(anchor);
+            webPage2.getDocumentFromWeb();
+            
+            DetailedCaseLaw queryBuilder = new DetailedCaseLaw(webPage2);
 
     }
 
