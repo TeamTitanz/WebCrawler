@@ -29,7 +29,7 @@ public class Anchor {
         this.anchorUrl = anchorUrl;
         this.scanStatus = 0;
         this.activated = true;
-        this.modified = Common.getTimeStamp();
+        this.modified = Common.getTimeStamp(); //to stpre the modified time stamps
         this.created = Common.getTimeStamp(); //To store crawled time stamps
     }
     
