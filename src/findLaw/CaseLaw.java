@@ -118,6 +118,7 @@ public class CaseLaw {
             String url ="http://caselaw.findlaw.com";
             Domain domain = new Domain(url);
 
+            //----------------------------------------start extracting HTML document from summary page------------------------------
             Anchor summaryAnchor = new Anchor(domain, summaryURL);
             WebPage summaryWebPage = new WebPage(summaryAnchor);
             summaryWebPage.getDocumentFromWeb();
@@ -311,11 +312,11 @@ public class CaseLaw {
                 CaseController.addCase(consumerLawCase, footNotes, appellateInformation, judges);
             }
         } catch (HttpStatusException ex) {
-            
+            ex.printStackTrace();
         } catch (IllegalArgumentException ex) {
-            
+            ex.printStackTrace();
         } catch(Exception ex) {
-            
+            ex.printStackTrace();
         }
         
     }
