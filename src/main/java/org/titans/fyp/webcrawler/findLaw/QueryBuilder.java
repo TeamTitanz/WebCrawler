@@ -53,8 +53,7 @@ public final class QueryBuilder {
         queryArray = new ArrayList();
         paginationArray = new ArrayList();
 
-        courtArray.add("us-supreme-court");
-        //createCourtList(webpage);
+        createCourtList(webpage);
         
         //manually set the Topics to cs_15 = Consumer Protection Law and 
         //createTopicList(webpage);
