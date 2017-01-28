@@ -1,8 +1,24 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+/*******************************************************************************
+ * Copyright 2016 Titans
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+ * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ *
+ ******************************************************************************/
+
 package org.titans.fyp.webcrawler;
 
 
@@ -21,35 +37,25 @@ import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**
- *
- * @author kjtdi
- */
+
 public class PageCollector {
+    static String domainURL;
 
-    private String summaryPageURL;
-    private String readPageURL;
-
-    public void setSummaryPageURL(String summaryPageURL) {
-        this.summaryPageURL = summaryPageURL;
+    public static void setDomain(String domain) {
+        domainURL = domain;
     }
 
-    public void setReadPageURL(String readPageURL) {
-        this.readPageURL = readPageURL;
-    }
-
-    public static void Crawl() {
-
+    public static void Crawl(String summaryPageURL, String readPageURL) {
         try {
             Case consumerLawCase = new Case();
             ArrayList<AppellateInformation> appellateInformation = new ArrayList<AppellateInformation>();
             ArrayList<FootNotes> footNotes = new ArrayList<FootNotes>();
             ArrayList<Judge> judges = new ArrayList<Judge>();
-            Domain domain = new Domain("http://caselaw.findlaw.com");
+            Domain domain = new Domain(domainURL);
             
-            //----------------------------------------start extracting HTML document from summary page------------------------------
+            //--------start extracting HTML document from summary page---------
             
-            Anchor summaryAnchor = new Anchor(domain, "http://caselaw.findlaw.com/summary/opinion/us-supreme-court/2011/06/23/255511.html");
+            Anchor summaryAnchor = new Anchor(domain, summaryPageURL);
             WebPage summaryWebPage = new WebPage(summaryAnchor);
             summaryWebPage.getDocumentFromWeb();
             Document summaryDocument = summaryWebPage.getDocument();
@@ -60,9 +66,10 @@ public class PageCollector {
             //iterate through each <p> element.
             for(Element p : paragraphs) {
              
-              if(!p.text().equals(" ")) {
-                 consumerLawCase.setSummary(p.text().replace("'", "''")); //extract summary and set it to Case object
-              }
+                if(!p.text().equals(" ")) {
+                    //extract summary and set it to Case object
+                    consumerLawCase.setSummary(p.text().replace("'", "''"));
+                }
               
             }
             
@@ -74,8 +81,10 @@ public class PageCollector {
                 
                 //extract judges information and push them to judges array list
                 if(h3.text().equals("Judges")) {
-                    if(!h3.nextElementSibling().text().equals("")) { //check whether li tags exists
-                        String judgeName = h3.nextElementSibling().select("li").text().replace("'", "''"); // extract judge
+                    //check whether li tags exists
+                    if(!h3.nextElementSibling().text().equals("")) {
+                        // extract judge
+                        String judgeName = h3.nextElementSibling().select("li").text().replace("'", "''");
                         Judge judge = new Judge();
                         judge.setName(judgeName);
                         judges.add(judge);
@@ -120,30 +129,33 @@ public class PageCollector {
                                 appellateInformation.add(aI);
 
                             }
-                            
                         }
-                        
                     }
                     
                 } else if(h3.text().equals("Court")) {
-                    if(!h3.nextElementSibling().text().equals("")) { //check whether li tags exists
+                    //check whether li tags exists
+                    if(!h3.nextElementSibling().text().equals("")) {
                         String court = h3.nextElementSibling().child(0).text();
-                        consumerLawCase.setCourt(court.replace("'", "''")); //adding court information to case
+                        //adding court information to case
+                        consumerLawCase.setCourt(court.replace("'", "''"));
                     }
                     
                 } else if(h3.text().equals("Counsel")) {
-                    if(!h3.nextElementSibling().text().equals("")) { //check whether li tags exists
+                    //check whether li tags exists
+                    if(!h3.nextElementSibling().text().equals("")) {
                         String counsel = h3.nextElementSibling().child(0).text();
-                        consumerLawCase.setCounsel(counsel.replace("'", "''")); //adding counsel information to case
+                        //adding counsel information to case
+                        consumerLawCase.setCounsel(counsel.replace("'", "''"));
                     } 
                     
                 }
             }
             
-            //----------------------------------------end extracting HTML document from summary page------------------------------
+            //------end extracting HTML document from summary page------
             
-            //----------------------------------------start extracting HTML document from Read page-------------------------------
-            Anchor readAnchor = new Anchor(domain, "http://caselaw.findlaw.com/us-supreme-court/09-993.html");
+            //------start extracting HTML document from Read page-------
+
+            Anchor readAnchor = new Anchor(domain, readPageURL);
             WebPage readWebPage = new WebPage(readAnchor);
             readWebPage.getDocumentFromWeb();
             Document readDocument = readWebPage.getDocument();
@@ -188,12 +200,12 @@ public class PageCollector {
                         consumerLawCase.setParty_2(partiesDetails[1].replace("'", "''"));
                     }
                 }
-                
                 index++;
             }
             
             //get case information
-            Elements readDocementContent = readDocument.select(".caselawcontent .searchable-content").first().children();;
+            Elements readDocementContent = readDocument.select
+                    (".caselawcontent .searchable-content").first().children();;
             String content = "";
             boolean isContent = false;
             

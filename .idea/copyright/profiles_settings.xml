@@ -1,0 +1,12 @@
+<component name="CopyrightManager">
+  <settings default="MIT license">
+    <module2copyright>
+      <element module="All" copyright="MIT license" />
+    </module2copyright>
+    <LanguageOptions name="JAVA">
+      <option name="fileTypeOverride" value="3" />
+      <option name="separateBefore" value="true" />
+      <option name="separateAfter" value="true" />
+    </LanguageOptions>
+  </settings>
+</component>

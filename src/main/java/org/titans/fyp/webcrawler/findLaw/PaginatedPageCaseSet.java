@@ -28,71 +28,74 @@ import org.titans.fyp.webcrawler.models.Anchor;
 import org.titans.fyp.webcrawler.models.Domain;
 import org.titans.fyp.webcrawler.models.WebPage;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 
-public class Pagination {
+public class PaginatedPageCaseSet {
 
     private WebPage webPage;
-    private List<String> pagesList;
-    private List<PaginatedPageCaseSet> paginatedPageCaseSets;
-    private int pageCount = 1;
+    private Map<String, String> caseMap;
 
-    public Pagination(WebPage webPage) throws Exception {
+    public Map<String, String> getCaseMap() {
+        return caseMap;
+    }
+
+    public PaginatedPageCaseSet(WebPage webPage) throws Exception {
 
         this.webPage = webPage;
 
-        pagesList = new ArrayList<String>();
-        paginatedPageCaseSets = new ArrayList<PaginatedPageCaseSet>();
+        caseMap = new HashMap<String, String>();
 
-        createPageList(webPage);
-
-        getCaseSetUrls();
+        createCaseList(webPage);
+        setDetailedCaseLawUrl();
 
     }
 
-    public void getCaseSetUrls() throws Exception {
+    private void setDetailedCaseLawUrl() throws Exception {
 
-        for (String url : pagesList) {
-            Domain domain = new Domain(url);
-            Anchor anchor = new Anchor(domain, url);
+        for (Map.Entry<String, String> caseEntry : caseMap.entrySet()) {
+            String caseURL = caseEntry.getKey();
+            Domain domain = new Domain(caseURL);
+            Anchor anchor = new Anchor(domain, caseURL);
             WebPage webPage = new WebPage(anchor);
             webPage.getDocumentFromWeb();
 
-            PaginatedPageCaseSet paginatedPageCaseSet = new PaginatedPageCaseSet(webPage);
-            
-            paginatedPageCaseSets.add(paginatedPageCaseSet);
-
+            String detailedCaseLawUrl = getDetailedCaseLawUrl(webPage);
+            caseEntry.setValue(detailedCaseLawUrl);
         }
 
     }
 
-    public void createPageList(WebPage webPage) {
-        String pageSelect = webPage.getDocument().getElementsByClass("pagecount").toString();
+    private String getDetailedCaseLawUrl(WebPage webPage) {
 
-        Document document = Jsoup.parse(pageSelect);
-        Elements options = document.select("strong");
+        String buttonText = webPage.getDocument().getElementsByClass("btn_read").toString();
 
-        for (Element element : options.subList(1, options.size())) {
+        Document document = Jsoup.parse(buttonText);
+        Elements options = document.select("a[href]");
+        
+        String link = "";
 
-            pageCount = Integer.parseInt(element.text());
+        for (Element element : options) {
 
-        }
-        for (int i = 1; i < pageCount + 1; i++) {
-
-            String link = webPage.getAnchor().getAnchorUrl();
-            link += "&" + "pgnum=" + i;
-            pagesList.add(link);
+            link = (element.attr("href"));
 
         }
+        return link;
+        
     }
 
-    public List<String> getPages() {
-        return pagesList;
+    private void createCaseList(WebPage webPage) {
+        String caseLawTable = webPage.getDocument().getElementById("srpcaselaw").toString();
+
+        Document document = Jsoup.parse(caseLawTable);
+        Elements options = document.select("a[href]");
+
+        for (Element element : options) {
+
+            caseMap.put(element.attr("href"), null);
+
+        }
     }
 
-    public List getPaginatedPageCaseSet() {
-        return paginatedPageCaseSets;
-    }
 }
