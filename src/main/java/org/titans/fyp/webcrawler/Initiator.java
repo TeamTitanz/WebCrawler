@@ -20,6 +20,7 @@
  ******************************************************************************/
 package org.titans.fyp.webcrawler;
 
+import org.apache.log4j.Logger;
 import org.titans.fyp.webcrawler.findLaw.PaginatedPageCaseSet;
 import org.titans.fyp.webcrawler.findLaw.Pagination;
 import org.titans.fyp.webcrawler.findLaw.QueryBuilder;
@@ -36,9 +37,10 @@ import java.util.Map;
  */
 public class Initiator {
 
+    final static Logger logger = Logger.getLogger(Initiator.class);
     public static void main(String [] args) {
 
-        System.out.println("Initializing the spider function...");
+        logger.info("Initializing the spider function...");
 
         String url = "http://caselaw.findlaw.com";
 
@@ -50,12 +52,12 @@ public class Initiator {
             webPage.getDocumentFromWeb();
 
             PageCollector.setDomain(url);
-            System.out.println("Building the URL list");
+            logger.info("Building the URL list");
             //by this, it will print the Case URl, and the detiled case URL
             QueryBuilder queryBuilder = new QueryBuilder(webPage);
             ArrayList<Pagination> paginatedURLs = (ArrayList<Pagination>) queryBuilder.getPaginatedURLs();
 
-            System.out.println("Crawling the web pages....");
+            logger.info("Crawling the web pages....");
             for (Pagination pagination: paginatedURLs) {
                 ArrayList<PaginatedPageCaseSet> paginatedPageCaseSets =
                         (ArrayList<PaginatedPageCaseSet>) pagination.getPaginatedPageCaseSet();
@@ -71,10 +73,10 @@ public class Initiator {
                 }
             }
 
-            System.out.println("Successfully completed.");
+            logger.info("Successfully completed.");
 
         } catch (Exception e) {
-            System.out.println("error");
+            logger.error(e.getMessage());
         }
     }
 }
