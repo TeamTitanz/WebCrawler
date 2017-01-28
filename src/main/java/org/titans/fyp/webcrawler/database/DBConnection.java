@@ -25,21 +25,25 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+/**
+ * Database connection establishment happens here.
+ */
 public class DBConnection {
     private static DBConnection dbConnection;
     private Connection connection;
 
     private  DBConnection() throws ClassNotFoundException, SQLException {
         Class.forName("com.mysql.jdbc.Driver");
-        connection =  (Connection) DriverManager.getConnection("jdbc:mysql://166.62.27.168/oblie?useUnicode=true&characterEncoding=UTF-8"
-                ,"fyp","nikonD7100"); //databse credentials
+        connection =  (Connection) DriverManager.getConnection(
+                "jdbc:mysql://166.62.27.168/oblie?useUnicode=true&characterEncoding=UTF-8"
+                //database access credentials
+                ,"fyp","nikonD7100");
     }
 
     public Connection getConnection(){
         return connection;
     }
 
-    //singleton
     public static DBConnection getDBConnection() throws ClassNotFoundException, SQLException{
         if(dbConnection == null){
             dbConnection = new DBConnection(); //make new database

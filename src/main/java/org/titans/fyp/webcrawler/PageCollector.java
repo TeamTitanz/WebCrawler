@@ -37,7 +37,9 @@ import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-
+/**
+ * Information extraction process on the summary and the read page happens here.
+ */
 public class PageCollector {
     static String domainURL;
 
@@ -233,7 +235,9 @@ public class PageCollector {
             }
             
             consumerLawCase.setContent(content.replace("'", "''"));
-            CaseController.addCase(consumerLawCase, footNotes, appellateInformation, judges);
+            CaseController.addCase(consumerLawCase, footNotes, appellateInformation,
+                    judges, summaryPageURL, readPageURL);
+
         } catch (Exception ex) {
             Logger.getLogger(PageCollector.class.getName()).log(Level.SEVERE, null, ex);
         }

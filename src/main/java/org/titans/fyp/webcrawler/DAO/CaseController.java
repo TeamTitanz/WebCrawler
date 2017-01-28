@@ -35,12 +35,17 @@ import java.util.ArrayList;
 public class CaseController {
 
     //add Case to database
-    public static int addCase(Case caseToDB, ArrayList<FootNotes> footNotes, ArrayList<AppellateInformation> appellateInformation, ArrayList<Judge> judges) throws SQLException, ClassNotFoundException {
-        
-        String sql = "INSERT INTO cases (case_no, court, party_1, party_2, argued_date, decided_date, content, summary, counsel) VALUES('"
+    public static int addCase(Case caseToDB, ArrayList<FootNotes> footNotes, ArrayList<AppellateInformation>
+            appellateInformation, ArrayList<Judge> judges, String summaryPageURL, String readPageURL)
+            throws SQLException, ClassNotFoundException {
+
+        String sql = "INSERT INTO cases (case_no, court, party_1, party_2, argued_date, decided_date, content, " +
+                "summary, counsel) VALUES('"
                 + caseToDB.getCase_no()+ "','" + caseToDB.getCourt()+ "','" +
-                caseToDB.getParty_1()+ "','" + caseToDB.getParty_2()+ "','"+caseToDB.getArgued_date()+"','"+caseToDB.getDecided_date()+"','" + 
+                caseToDB.getParty_1()+ "','" + caseToDB.getParty_2()+ "','"+
+                caseToDB.getArgued_date()+"','"+ caseToDB.getDecided_date()+"','" +
                 caseToDB.getContent()+ "','" + caseToDB.getSummary() + "','" + caseToDB.getCounsel() + "')";
+
         int res = DBHandler.setData(sql, DBConnection.getConnectionToDB());
         
         //retrieve latestId
@@ -63,6 +68,9 @@ public class CaseController {
             j.setCaseId(latestId);
             JudgeController.addJudge(j);
         }
+
+        //add urls to the database
+        ContentURLsController.addURLs(summaryPageURL, readPageURL, latestId);
         
         return res;
     }

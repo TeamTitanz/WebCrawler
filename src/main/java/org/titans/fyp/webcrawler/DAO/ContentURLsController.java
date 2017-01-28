@@ -18,29 +18,33 @@
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *
  ******************************************************************************/
+package org.titans.fyp.webcrawler.DAO;
 
-package org.titans.fyp.webcrawler.database;
 
-import java.sql.Connection;
+import org.titans.fyp.webcrawler.database.DBConnection;
+import org.titans.fyp.webcrawler.database.DBHandler;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+public class ContentURLsController {
 
-public class DBHandler {
+    public static int addURLs(String summaryPageURL, String readPageURL, int caseId)
+            throws SQLException, ClassNotFoundException {
 
-    //use to write data to database
-    public static int setData(String query, Connection connection) throws SQLException{
-        java.sql.Statement stm =  connection.createStatement();
-        int res = stm.executeUpdate(query , stm.RETURN_GENERATED_KEYS);
-        return res;
+        String sql = "INSERT INTO content_urls (url_id, summary_page_url, read_page_url, case_id) VALUES('"
+                + getLatestId() + "','" + summaryPageURL + "','" + readPageURL + "','" + caseId + "')";
+        return DBHandler.setData(sql, DBConnection.getConnectionToDB());
     }
 
-    //use to read data from database
-    public static ResultSet getData(String query, Connection connection) throws SQLException{
-        java.sql.Statement stm =  connection.createStatement();
-        ResultSet res = stm.executeQuery(query);
-        return res;
+    private static int getLatestId() throws SQLException, ClassNotFoundException {
+        String sql = "SELECT url_id from content_urls GROUP BY url_id DESC LIMIT 1";
+        ResultSet rst = DBHandler.getData(sql, DBConnection.getConnectionToDB());
+        int latestId = 1;
+        while(rst.next()){
+            latestId = rst.getInt(1);
+        }
+        return latestId + 1;
     }
 
-    
 }

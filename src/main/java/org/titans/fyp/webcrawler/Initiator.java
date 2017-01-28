@@ -31,10 +31,15 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-
+/**
+ * The initiate the spider function.
+ */
 public class Initiator {
 
     public static void main(String [] args) {
+
+        System.out.println("Initializing the spider function...");
+
         String url = "http://caselaw.findlaw.com";
 
         try {
@@ -45,10 +50,12 @@ public class Initiator {
             webPage.getDocumentFromWeb();
 
             PageCollector.setDomain(url);
+            System.out.println("Building the URL list");
             //by this, it will print the Case URl, and the detiled case URL
             QueryBuilder queryBuilder = new QueryBuilder(webPage);
             ArrayList<Pagination> paginatedURLs = (ArrayList<Pagination>) queryBuilder.getPaginatedURLs();
 
+            System.out.println("Crawling the web pages....");
             for (Pagination pagination: paginatedURLs) {
                 ArrayList<PaginatedPageCaseSet> paginatedPageCaseSets =
                         (ArrayList<PaginatedPageCaseSet>) pagination.getPaginatedPageCaseSet();
@@ -63,6 +70,8 @@ public class Initiator {
 
                 }
             }
+
+            System.out.println("Successfully completed.");
 
         } catch (Exception e) {
             System.out.println("error");
