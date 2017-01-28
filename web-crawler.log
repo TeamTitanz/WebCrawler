@@ -1,0 +1,25 @@
+2017-01-28 18:40:30 INFO  Initiator:44 - Initializing the spider function...
+2017-01-28 18:40:31 INFO  Initiator:56 - Building the URL list
+2017-01-28 18:40:46 INFO  Initiator:61 - Crawling the web pages....
+2017-01-28 18:40:47 ERROR PageCollector:250 - Unparseable date: ""
+2017-01-28 18:41:14 ERROR PageCollector:250 - 
+2017-01-28 18:41:14 ERROR WebPage:49 - HTTP error fetching URL
+2017-01-28 18:41:14 ERROR PageCollector:250 - 
+2017-01-28 18:41:33 ERROR WebPage:49 - HTTP error fetching URL
+2017-01-28 18:41:33 ERROR PageCollector:250 - 
+2017-01-28 18:41:33 ERROR PageCollector:250 - Malformed URL: /us-supreme-court/06-84,%2006-100.html
+2017-01-28 18:41:38 ERROR WebPage:49 - HTTP error fetching URL
+2017-01-28 18:41:38 ERROR PageCollector:250 - 
+2017-01-28 18:41:39 ERROR WebPage:49 - HTTP error fetching URL
+2017-01-28 18:41:39 ERROR PageCollector:250 - 
+2017-01-28 18:41:40 ERROR WebPage:49 - HTTP error fetching URL
+2017-01-28 18:41:40 ERROR PageCollector:250 - 
+2017-01-28 18:41:41 ERROR WebPage:49 - HTTP error fetching URL
+2017-01-28 18:41:41 ERROR PageCollector:250 - 
+2017-01-28 18:41:42 ERROR WebPage:49 - HTTP error fetching URL
+2017-01-28 18:41:42 ERROR PageCollector:250 - 
+2017-01-28 18:41:43 ERROR WebPage:49 - HTTP error fetching URL
+2017-01-28 18:41:43 ERROR PageCollector:250 - 
+2017-01-28 18:41:44 ERROR WebPage:49 - HTTP error fetching URL
+2017-01-28 18:41:44 ERROR PageCollector:250 - 
+2017-01-28 18:41:44 INFO  Initiator:77 - Successfully completed.

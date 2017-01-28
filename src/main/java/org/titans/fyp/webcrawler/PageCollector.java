@@ -42,7 +42,7 @@ import java.util.Locale;
 public class PageCollector {
     static String domainURL;
 
-    final static Logger logger = Logger.getLogger(Initiator.class);
+    final static Logger logger = Logger.getLogger(PageCollector.class);
 
     public static void setDomain(String domain) {
         domainURL = domain;

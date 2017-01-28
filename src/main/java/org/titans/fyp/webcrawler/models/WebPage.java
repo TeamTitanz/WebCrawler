@@ -20,20 +20,19 @@
  ******************************************************************************/
 package org.titans.fyp.webcrawler.models;
 
+import org.apache.log4j.Logger;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-import org.titans.fyp.webcrawler.PageCollector;
 import org.titans.fyp.webcrawler.utils.Common;
 import org.titans.fyp.webcrawler.utils.Hasher;
 
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class WebPage {
     private Anchor anchor;
     private String webPageHash;
-    
+    final static Logger logger = Logger.getLogger(WebPage.class);
+
     private Document document;
 
     public WebPage(Anchor anchor) throws Exception {
@@ -47,7 +46,7 @@ public class WebPage {
         try {
             document = Jsoup.connect(anchor.getAnchorUrl()).get(); //assign HTML page
         } catch (IOException ex) {
-            Logger.getLogger(PageCollector.class.getName()).log(Level.SEVERE, null, ex);
+            logger.error(ex.getMessage());
         }
     }
 
