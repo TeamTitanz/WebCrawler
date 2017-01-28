@@ -22,6 +22,7 @@
 package org.titans.fyp.webcrawler;
 
 
+import org.apache.log4j.Logger;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
@@ -34,14 +35,14 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  * Information extraction process on the summary and the read page happens here.
  */
 public class PageCollector {
     static String domainURL;
+
+    final static Logger logger = Logger.getLogger(Initiator.class);
 
     public static void setDomain(String domain) {
         domainURL = domain;
@@ -246,7 +247,7 @@ public class PageCollector {
                     judges, summaryPageURL, readPageURL);
 
         } catch (Exception ex) {
-            Logger.getLogger(PageCollector.class.getName()).log(Level.SEVERE, null, ex);
+            logger.error(ex.getMessage());
         }
     }
     
@@ -261,10 +262,9 @@ public class PageCollector {
                 Date result =  (Date) df.parse(dateRecord[1]);
                 return result;
             } catch (ParseException ex) {
-                Logger.getLogger(PageCollector.class.getName()).log(Level.SEVERE, null, ex);
+                logger.error(ex.getMessage());
             }
         }
-        
         return null;
     }
 }

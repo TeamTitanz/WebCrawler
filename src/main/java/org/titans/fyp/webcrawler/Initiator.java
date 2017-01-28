@@ -38,6 +38,7 @@ import java.util.Map;
 public class Initiator {
 
     final static Logger logger = Logger.getLogger(Initiator.class);
+
     public static void main(String [] args) {
 
         logger.info("Initializing the spider function...");
