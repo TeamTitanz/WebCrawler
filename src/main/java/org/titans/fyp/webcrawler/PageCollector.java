@@ -49,7 +49,7 @@ public class PageCollector {
 
     public static void Crawl(String summaryPageURL, String readPageURL) {
         try {
-            Case consumerLawCase = new Case();
+            Case lawCase = new Case();
             ArrayList<AppellateInformation> appellateInformation = new ArrayList<AppellateInformation>();
             ArrayList<FootNotes> footNotes = new ArrayList<FootNotes>();
             ArrayList<Judge> judges = new ArrayList<Judge>();
@@ -70,9 +70,8 @@ public class PageCollector {
              
                 if(!p.text().equals(" ")) {
                     //extract summary and set it to Case object
-                    consumerLawCase.setSummary(p.text().replace("'", "''"));
+                    lawCase.setSummary(p.text().replace("'", "''"));
                 }
-              
             }
             
             //get <h3> tags in document
@@ -105,7 +104,7 @@ public class PageCollector {
                             if (s.equals("Decided")) {
                                 Date decidedDate = splitAppellatesDates(li.text());
                                 java.sql.Date decidedSqlDate = new java.sql.Date(decidedDate.getTime());
-                                //Adding appellate Inforation Object to Appellate Information Array List
+                                //Adding appellate Information Object to Appellate Information Array List
                                 AppellateInformation aI = new AppellateInformation("Decided", decidedSqlDate);
                                 appellateInformation.add(aI);
 
@@ -139,7 +138,7 @@ public class PageCollector {
                     if(!h3.nextElementSibling().text().equals("")) {
                         String court = h3.nextElementSibling().child(0).text();
                         //adding court information to case
-                        consumerLawCase.setCourt(court.replace("'", "''"));
+                        lawCase.setCourt(court.replace("'", "''"));
                     }
                     
                 } else if(h3.text().equals("Counsel")) {
@@ -147,7 +146,7 @@ public class PageCollector {
                     if(!h3.nextElementSibling().text().equals("")) {
                         String counsel = h3.nextElementSibling().child(0).text();
                         //adding counsel information to case
-                        consumerLawCase.setCounsel(counsel.replace("'", "''"));
+                        lawCase.setCounsel(counsel.replace("'", "''"));
                     } 
                     
                 }
@@ -163,11 +162,11 @@ public class PageCollector {
             Document readDocument = readWebPage.getDocument();
             
             //get <h3> tags in document
-            Elements readDocementH3s = readDocument.select("h3");
+            Elements readDocumentH3s = readDocument.select("h3");
             
             //iterate through h3 tags
             int index = 0;
-            for(Element e: readDocementH3s) {
+            for(Element e: readDocumentH3s) {
                 String extractedText = e.text();
                 
                 //extract argued data and decided date. ex: Argued: March 30, 2011    Decided: June 24, 2011
@@ -178,28 +177,36 @@ public class PageCollector {
                     DateFormat df = new SimpleDateFormat("MMMM dd, yyyy", Locale.US);
                     Date arguedDate =  (Date) df.parse(rawDates[0].split(":")[1].trim());
                     java.sql.Date arguedSqlDate = new java.sql.Date(arguedDate.getTime());
-                    consumerLawCase.setArgued_date(arguedSqlDate);
+                    lawCase.setArgued_date(arguedSqlDate);
                     
                     //check whether there is Decided date
                     if(rawDates.length > 1) {
                         //parse decided date as Date type
                         Date decidedDate =  (Date) df.parse(rawDates[1].split(":")[1].trim());
                         java.sql.Date decidedSqlDate = new java.sql.Date(decidedDate.getTime());
-                        consumerLawCase.setDecided_date(decidedSqlDate);
+                        lawCase.setDecided_date(decidedSqlDate);
                     }
                     
                 } else if(extractedText.startsWith("No.")) {
                     //extracting court Number. ex: No. 90-2324
                     String caseNo = extractedText.substring(4);
-                    consumerLawCase.setCase_no(caseNo.replace("'", "''"));
+                    lawCase.setCase_no(caseNo.replace("'", "''"));
                     
                 } else if(index == 0 && extractedText.contains(" v. ")) {
                     //add parties to case
                     String[] partiesDetails = extractedText.split(" v. ");
-                    consumerLawCase.setParty_1(partiesDetails[0].replace("'", "''"));
+                    lawCase.setParty_1(partiesDetails[0].replace("'", "''"));
                     
                     if(partiesDetails.length > 1) {
-                        consumerLawCase.setParty_2(partiesDetails[1].replace("'", "''"));
+                        String[] items = partiesDetails[1].split("\\(");
+                        String case_year = items[1].replace(")","");
+                        //add the case year
+                        lawCase.setYear(case_year);
+                        //add party 2
+                        if(items[0].substring(items[0].length()-1).equals(",")) {
+                            items[0] = items[0].substring(0,items[0].length()-1);
+                        }
+                        lawCase.setParty_2(items[0]);
                     }
                 }
                 index++;
@@ -234,8 +241,8 @@ public class PageCollector {
                 
             }
             
-            consumerLawCase.setContent(content.replace("'", "''"));
-            CaseController.addCase(consumerLawCase, footNotes, appellateInformation,
+            lawCase.setContent(content.replace("'", "''"));
+            CaseController.addCase(lawCase, footNotes, appellateInformation,
                     judges, summaryPageURL, readPageURL);
 
         } catch (Exception ex) {
@@ -243,7 +250,7 @@ public class PageCollector {
         }
     }
     
-    //Split and formating Appellates Dates
+    //Split and formatting Appellates Dates
     private static Date splitAppellatesDates(String records) {
         
         String[] dateRecord = records.split(" ");

@@ -40,11 +40,12 @@ public class CaseController {
             throws SQLException, ClassNotFoundException {
 
         String sql = "INSERT INTO cases (case_no, court, party_1, party_2, argued_date, decided_date, content, " +
-                "summary, counsel) VALUES('"
+                "summary, counsel, year) VALUES('"
                 + caseToDB.getCase_no()+ "','" + caseToDB.getCourt()+ "','" +
                 caseToDB.getParty_1()+ "','" + caseToDB.getParty_2()+ "','"+
                 caseToDB.getArgued_date()+"','"+ caseToDB.getDecided_date()+"','" +
-                caseToDB.getContent()+ "','" + caseToDB.getSummary() + "','" + caseToDB.getCounsel() + "')";
+                caseToDB.getContent()+ "','" + caseToDB.getSummary() + "','" +
+                caseToDB.getCounsel() + "','" + caseToDB.getYear() +"')";
 
         int res = DBHandler.setData(sql, DBConnection.getConnectionToDB());
         

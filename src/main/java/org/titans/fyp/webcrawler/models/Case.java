@@ -34,11 +34,13 @@ public class Case {
     private String content;
     private String summary;
     private String counsel;
+    private String year;
 
     public Case() {
     }
 
-    public Case(int id, String case_no, String court, String party_1, String party_2, Date argued_date, Date decided_date, String content, String summary, String counsel) {
+    public Case(int id, String case_no, String court, String party_1, String party_2, Date argued_date,
+                Date decided_date, String content, String summary, String counsel, String year) {
         this.id = id;
         this.case_no = case_no;
         this.court = court;
@@ -49,8 +51,17 @@ public class Case {
         this.content = content;
         this.summary = summary;
         this.counsel = counsel;
+        this.year = year;
     }
-    
+
+    public String getYear() {
+        return year;
+    }
+
+    public void setYear(String year) {
+        this.year = year;
+    }
+
     /**
      * @return the id
      */
