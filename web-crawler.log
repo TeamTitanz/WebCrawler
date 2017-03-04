@@ -23,3 +23,225 @@
 2017-01-28 18:41:44 ERROR WebPage:49 - HTTP error fetching URL
 2017-01-28 18:41:44 ERROR PageCollector:250 - 
 2017-01-28 18:41:44 INFO  Initiator:77 - Successfully completed.
+2017-03-04 22:09:37 INFO  Initiator:44 - Initializing the spider function...
+2017-03-04 22:09:39 INFO  Initiator:56 - Building the URL list
+2017-03-04 22:20:55 INFO  Initiator:61 - Crawling the web pages....
+2017-03-04 22:20:55 ERROR PageCollector:250 - Unparseable date: ""
+2017-03-04 22:21:21 ERROR PageCollector:250 - 
+2017-03-04 22:21:22 ERROR WebPage:49 - HTTP error fetching URL
+2017-03-04 22:21:22 ERROR PageCollector:250 - 
+2017-03-04 22:21:38 ERROR WebPage:49 - HTTP error fetching URL
+2017-03-04 22:21:38 ERROR PageCollector:250 - 
+2017-03-04 22:21:38 ERROR PageCollector:250 - Malformed URL: /us-supreme-court/06-84,%2006-100.html
+2017-03-04 22:21:41 ERROR WebPage:49 - HTTP error fetching URL
+2017-03-04 22:21:41 ERROR PageCollector:250 - 
+2017-03-04 22:21:42 ERROR WebPage:49 - HTTP error fetching URL
+2017-03-04 22:21:42 ERROR PageCollector:250 - 
+2017-03-04 22:21:42 ERROR WebPage:49 - HTTP error fetching URL
+2017-03-04 22:21:42 ERROR PageCollector:250 - 
+2017-03-04 22:21:43 ERROR WebPage:49 - HTTP error fetching URL
+2017-03-04 22:21:43 ERROR PageCollector:250 - 
+2017-03-04 22:21:44 ERROR WebPage:49 - HTTP error fetching URL
+2017-03-04 22:21:44 ERROR PageCollector:250 - 
+2017-03-04 22:21:45 ERROR WebPage:49 - HTTP error fetching URL
+2017-03-04 22:21:45 ERROR PageCollector:250 - 
+2017-03-04 22:21:45 ERROR WebPage:49 - HTTP error fetching URL
+2017-03-04 22:21:45 ERROR PageCollector:250 - 
+2017-03-04 22:21:46 ERROR PageCollector:250 - Data truncation: Data too long for column 'year' at row 1
+2017-03-04 22:21:47 ERROR PageCollector:250 - 1
+2017-03-04 22:21:48 ERROR PageCollector:250 - 
+2017-03-04 22:21:49 ERROR PageCollector:250 - 1
+2017-03-04 22:21:50 ERROR PageCollector:250 - 1
+2017-03-04 22:21:50 ERROR PageCollector:250 - 
+2017-03-04 22:21:51 ERROR PageCollector:250 - 1
+2017-03-04 22:21:52 ERROR PageCollector:250 - 1
+2017-03-04 22:21:53 ERROR PageCollector:250 - 1
+2017-03-04 22:21:54 ERROR PageCollector:250 - 1
+2017-03-04 22:21:55 ERROR PageCollector:250 - 1
+2017-03-04 22:21:56 ERROR PageCollector:250 - 1
+2017-03-04 22:21:57 ERROR PageCollector:250 - 1
+2017-03-04 22:21:58 ERROR PageCollector:250 - 1
+2017-03-04 22:22:00 ERROR PageCollector:250 - 1
+2017-03-04 22:22:01 ERROR PageCollector:250 - 1
+2017-03-04 22:22:04 ERROR PageCollector:250 - 1
+2017-03-04 22:22:06 ERROR PageCollector:250 - 1
+2017-03-04 22:22:07 ERROR PageCollector:250 - 1
+2017-03-04 22:22:09 ERROR PageCollector:250 - 1
+2017-03-04 22:22:10 ERROR PageCollector:250 - 1
+2017-03-04 22:22:11 ERROR PageCollector:250 - 1
+2017-03-04 22:22:12 ERROR PageCollector:250 - 1
+2017-03-04 22:22:14 ERROR PageCollector:250 - 1
+2017-03-04 22:22:15 ERROR PageCollector:250 - 1
+2017-03-04 22:22:16 ERROR PageCollector:250 - 1
+2017-03-04 22:22:18 ERROR PageCollector:250 - 1
+2017-03-04 22:22:19 ERROR PageCollector:250 - 1
+2017-03-04 22:22:20 ERROR PageCollector:250 - 1
+2017-03-04 22:22:22 ERROR PageCollector:250 - 1
+2017-03-04 22:22:23 ERROR PageCollector:250 - 1
+2017-03-04 22:22:25 ERROR PageCollector:250 - 1
+2017-03-04 22:22:26 ERROR PageCollector:250 - 1
+2017-03-04 22:22:27 ERROR PageCollector:250 - 1
+2017-03-04 22:22:28 ERROR PageCollector:250 - 1
+2017-03-04 22:22:29 ERROR PageCollector:250 - 1
+2017-03-04 22:22:30 ERROR PageCollector:250 - 1
+2017-03-04 22:22:32 ERROR PageCollector:250 - 1
+2017-03-04 22:22:33 ERROR PageCollector:250 - 1
+2017-03-04 22:22:34 ERROR PageCollector:250 - 1
+2017-03-04 22:22:35 ERROR PageCollector:250 - 1
+2017-03-04 22:22:36 ERROR PageCollector:250 - 1
+2017-03-04 22:22:38 ERROR PageCollector:250 - 1
+2017-03-04 22:22:39 ERROR PageCollector:250 - 1
+2017-03-04 22:22:40 ERROR PageCollector:250 - 1
+2017-03-04 22:22:42 ERROR PageCollector:250 - 1
+2017-03-04 22:22:44 ERROR PageCollector:250 - 1
+2017-03-04 22:22:45 ERROR PageCollector:250 - 1
+2017-03-04 22:22:46 ERROR PageCollector:250 - 1
+2017-03-04 22:22:47 ERROR PageCollector:250 - 1
+2017-03-04 22:22:49 ERROR PageCollector:250 - 1
+2017-03-04 22:22:49 ERROR PageCollector:250 - 1
+2017-03-04 22:22:51 ERROR PageCollector:250 - 1
+2017-03-04 22:22:52 ERROR PageCollector:250 - 1
+2017-03-04 22:22:54 ERROR PageCollector:250 - 1
+2017-03-04 22:22:55 ERROR PageCollector:250 - 1
+2017-03-04 22:22:56 ERROR PageCollector:250 - 1
+2017-03-04 22:22:56 ERROR PageCollector:250 - 1
+2017-03-04 22:22:57 ERROR PageCollector:250 - 1
+2017-03-04 22:22:59 ERROR PageCollector:250 - 1
+2017-03-04 22:23:00 ERROR PageCollector:250 - 1
+2017-03-04 22:23:01 ERROR PageCollector:250 - 1
+2017-03-04 22:23:02 ERROR PageCollector:250 - 1
+2017-03-04 22:23:03 ERROR PageCollector:250 - 1
+2017-03-04 22:23:06 ERROR PageCollector:250 - 1
+2017-03-04 22:23:06 ERROR PageCollector:250 - 1
+2017-03-04 22:23:07 ERROR PageCollector:250 - 1
+2017-03-04 22:23:09 ERROR PageCollector:250 - 1
+2017-03-04 22:23:10 ERROR PageCollector:250 - 1
+2017-03-04 22:23:12 ERROR PageCollector:250 - 1
+2017-03-04 22:23:13 ERROR PageCollector:250 - 1
+2017-03-04 22:23:13 ERROR PageCollector:250 - 1
+2017-03-04 22:23:14 ERROR PageCollector:250 - 1
+2017-03-04 22:23:15 ERROR PageCollector:250 - 1
+2017-03-04 22:23:16 ERROR PageCollector:250 - 1
+2017-03-04 22:23:17 ERROR PageCollector:250 - 1
+2017-03-04 22:23:18 ERROR PageCollector:250 - 1
+2017-03-04 22:23:19 ERROR PageCollector:250 - 1
+2017-03-04 22:23:20 ERROR PageCollector:250 - 1
+2017-03-04 22:23:22 ERROR PageCollector:250 - 1
+2017-03-04 22:23:23 ERROR PageCollector:250 - 1
+2017-03-04 22:23:24 ERROR PageCollector:250 - 1
+2017-03-04 22:23:26 ERROR PageCollector:250 - 1
+2017-03-04 22:23:27 ERROR PageCollector:250 - 1
+2017-03-04 22:23:27 ERROR PageCollector:250 - 
+2017-03-04 22:23:28 ERROR PageCollector:250 - 1
+2017-03-04 22:23:29 ERROR PageCollector:250 - 1
+2017-03-04 22:23:31 ERROR PageCollector:250 - 1
+2017-03-04 22:23:32 ERROR PageCollector:250 - 1
+2017-03-04 22:23:33 ERROR PageCollector:250 - 1
+2017-03-04 22:23:34 ERROR PageCollector:250 - 1
+2017-03-04 22:23:34 ERROR PageCollector:250 - 
+2017-03-04 22:23:36 ERROR PageCollector:250 - 1
+2017-03-04 22:23:37 ERROR PageCollector:250 - 
+2017-03-04 22:23:38 ERROR PageCollector:250 - 1
+2017-03-04 22:23:41 ERROR PageCollector:250 - 1
+2017-03-04 22:23:42 ERROR PageCollector:250 - 1
+2017-03-04 22:23:43 ERROR PageCollector:250 - 1
+2017-03-04 22:23:44 ERROR PageCollector:250 - 1
+2017-03-04 22:23:45 ERROR PageCollector:250 - 1
+2017-03-04 22:23:46 ERROR PageCollector:250 - Communications link failure
+
+The last packet successfully received from the server was 119,596 milliseconds ago.  The last packet sent successfully to the server was 0 milliseconds ago.
+2017-03-04 22:23:47 ERROR PageCollector:250 - 1
+2017-03-04 22:23:48 ERROR PageCollector:250 - 1
+2017-03-04 22:23:49 ERROR PageCollector:250 - 1
+2017-03-04 22:23:50 ERROR PageCollector:250 - 1
+2017-03-04 22:23:51 ERROR PageCollector:250 - No operations allowed after connection closed.
+2017-03-04 22:23:53 ERROR PageCollector:250 - 1
+2017-03-04 22:23:54 ERROR PageCollector:250 - 1
+2017-03-04 22:23:55 ERROR PageCollector:250 - 1
+2017-03-04 22:23:56 ERROR PageCollector:250 - No operations allowed after connection closed.
+2017-03-04 22:23:57 ERROR PageCollector:250 - 1
+2017-03-04 22:23:58 ERROR PageCollector:250 - 1
+2017-03-04 22:23:59 ERROR PageCollector:250 - 1
+2017-03-04 22:23:59 ERROR PageCollector:250 - 1
+2017-03-04 22:24:00 ERROR PageCollector:250 - 1
+2017-03-04 22:24:01 ERROR PageCollector:250 - 1
+2017-03-04 22:24:03 ERROR PageCollector:250 - 1
+2017-03-04 22:24:04 ERROR PageCollector:250 - 1
+2017-03-04 22:24:05 ERROR PageCollector:250 - 1
+2017-03-04 22:24:06 ERROR PageCollector:250 - 1
+2017-03-04 22:24:06 ERROR PageCollector:250 - 1
+2017-03-04 22:24:08 ERROR PageCollector:250 - 1
+2017-03-04 22:24:08 ERROR PageCollector:250 - 1
+2017-03-04 22:24:09 ERROR PageCollector:250 - 1
+2017-03-04 22:24:10 ERROR PageCollector:250 - 1
+2017-03-04 22:24:11 ERROR PageCollector:250 - 1
+2017-03-04 22:24:12 ERROR PageCollector:250 - 1
+2017-03-04 22:24:13 ERROR PageCollector:250 - 1
+2017-03-04 22:24:14 ERROR PageCollector:250 - 1
+2017-03-04 22:24:15 ERROR PageCollector:250 - 1
+2017-03-04 22:24:16 ERROR PageCollector:250 - 1
+2017-03-04 22:24:17 ERROR PageCollector:250 - No operations allowed after connection closed.
+2017-03-04 22:24:18 ERROR PageCollector:250 - 1
+2017-03-04 22:24:19 ERROR PageCollector:250 - 1
+2017-03-04 22:24:20 ERROR PageCollector:250 - 1
+2017-03-04 22:24:21 ERROR PageCollector:250 - 1
+2017-03-04 22:24:22 ERROR PageCollector:250 - 1
+2017-03-04 22:24:24 ERROR PageCollector:250 - 1
+2017-03-04 22:24:25 ERROR PageCollector:250 - 1
+2017-03-04 22:24:26 ERROR PageCollector:250 - 1
+2017-03-04 22:24:27 ERROR PageCollector:250 - 1
+2017-03-04 22:24:28 ERROR PageCollector:250 - 1
+2017-03-04 22:24:29 ERROR PageCollector:250 - 1
+2017-03-04 22:24:30 ERROR PageCollector:250 - 1
+2017-03-04 22:24:31 ERROR PageCollector:250 - 1
+2017-03-04 22:24:32 ERROR PageCollector:250 - 1
+2017-03-04 22:24:34 ERROR PageCollector:250 - 1
+2017-03-04 22:24:36 ERROR PageCollector:250 - 1
+2017-03-04 22:24:37 ERROR PageCollector:250 - 1
+2017-03-04 22:24:38 ERROR PageCollector:250 - 1
+2017-03-04 22:24:39 ERROR PageCollector:250 - 1
+2017-03-04 22:24:40 ERROR PageCollector:250 - 1
+2017-03-04 22:24:41 ERROR PageCollector:250 - 1
+2017-03-04 22:24:42 ERROR PageCollector:250 - 1
+2017-03-04 22:24:43 ERROR PageCollector:250 - 1
+2017-03-04 22:24:43 ERROR PageCollector:250 - 
+2017-03-04 22:24:44 ERROR PageCollector:250 - 
+2017-03-04 22:24:44 ERROR PageCollector:250 - 1
+2017-03-04 22:24:46 ERROR PageCollector:250 - 1
+2017-03-04 22:24:46 ERROR PageCollector:250 - 
+2017-03-04 22:24:47 ERROR PageCollector:250 - 
+2017-03-04 22:24:47 ERROR PageCollector:250 - 
+2017-03-04 22:24:48 ERROR PageCollector:250 - 1
+2017-03-04 22:24:48 ERROR PageCollector:250 - 
+2017-03-04 22:24:49 ERROR PageCollector:250 - No operations allowed after connection closed.
+2017-03-04 22:24:50 ERROR PageCollector:250 - 1
+2017-03-04 22:24:51 ERROR PageCollector:250 - No operations allowed after connection closed.
+2017-03-04 22:24:52 ERROR PageCollector:250 - No operations allowed after connection closed.
+2017-03-04 22:24:55 ERROR PageCollector:250 - 1
+2017-03-04 22:24:56 ERROR PageCollector:250 - 1
+2017-03-04 22:24:57 ERROR PageCollector:250 - 1
+2017-03-04 22:24:57 ERROR PageCollector:250 - 1
+2017-03-04 22:24:59 ERROR PageCollector:250 - 1
+2017-03-04 22:25:00 ERROR PageCollector:250 - No operations allowed after connection closed.
+2017-03-04 22:25:01 ERROR PageCollector:250 - No operations allowed after connection closed.
+2017-03-04 22:25:02 ERROR PageCollector:250 - 1
+2017-03-04 22:25:04 ERROR PageCollector:250 - 1
+2017-03-04 22:25:05 ERROR PageCollector:250 - 1
+2017-03-04 22:25:06 ERROR PageCollector:250 - No operations allowed after connection closed.
+2017-03-04 22:25:07 ERROR PageCollector:250 - 1
+2017-03-04 22:25:08 ERROR PageCollector:250 - 1
+2017-03-04 22:25:09 ERROR PageCollector:250 - 1
+2017-03-04 22:25:10 ERROR PageCollector:250 - 1
+2017-03-04 22:25:11 ERROR PageCollector:250 - 1
+2017-03-04 22:25:12 ERROR PageCollector:250 - 1
+2017-03-04 22:25:13 ERROR PageCollector:250 - 1
+2017-03-04 22:25:14 ERROR PageCollector:250 - No operations allowed after connection closed.
+2017-03-04 22:25:15 ERROR PageCollector:250 - 1
+2017-03-04 22:25:16 ERROR PageCollector:250 - 1
+2017-03-04 22:25:18 ERROR PageCollector:250 - 1
+2017-03-04 22:25:19 ERROR PageCollector:250 - 1
+2017-03-04 22:25:20 ERROR PageCollector:250 - No operations allowed after connection closed.
+2017-03-04 22:41:13 INFO  Initiator:44 - Initializing the spider function...
+2017-03-04 22:41:16 INFO  Initiator:56 - Building the URL list
+2017-03-04 23:02:27 INFO  Initiator:44 - Initializing the spider function...
+2017-03-04 23:02:28 INFO  Initiator:56 - Building the URL list

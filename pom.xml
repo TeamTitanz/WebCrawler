@@ -26,7 +26,13 @@
 
     <groupId>org.titans.fyp</groupId>
     <artifactId>web-crawler</artifactId>
+    <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
+
+    <modules>
+        <module>findLaw</module>
+        <module>white-house-executive-orders</module>
+    </modules>
 
     <dependencies>
         <!-- https://mvnrepository.com/artifact/org.jsoup/jsoup -->
@@ -54,6 +60,7 @@
         </dependency>
 
     </dependencies>
+
     <build>
         <plugins>
             <!--
