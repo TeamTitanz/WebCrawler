@@ -30,8 +30,9 @@
     <version>1.0-SNAPSHOT</version>
 
     <modules>
-        <module>findLaw</module>
-        <module>white-house-executive-orders</module>
+        <module>components/findLaw</module>
+        <module>components/white-house-executive-orders</module>
+        <module>components/justia</module>
     </modules>
 
     <dependencies>
