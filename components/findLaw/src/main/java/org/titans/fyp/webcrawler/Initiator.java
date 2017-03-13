@@ -27,6 +27,7 @@ import org.titans.fyp.webcrawler.findLaw.QueryBuilder;
 import org.titans.fyp.webcrawler.models.Anchor;
 import org.titans.fyp.webcrawler.models.Domain;
 import org.titans.fyp.webcrawler.models.WebPage;
+import org.titans.fyp.webcrawler.utils.FindLawConfiguration;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -39,13 +40,15 @@ public class Initiator {
 
     final static Logger logger = Logger.getLogger(Initiator.class);
 
-    public static void main(String [] args) {
+    public static void main(String[] args) {
 
         logger.info("Initializing the spider function...");
 
         String url = "http://caselaw.findlaw.com";
 
         try {
+
+            FindLawConfiguration findLawConfig = new FindLawConfiguration();
 
             Domain domain = new Domain(url);
             Anchor anchor = new Anchor(domain, url);
@@ -55,11 +58,11 @@ public class Initiator {
             PageCollector.setDomain(url);
             logger.info("Building the URL list");
             //by this, it will print the Case URl, and the detiled case URL
-            QueryBuilder queryBuilder = new QueryBuilder(webPage);
+            QueryBuilder queryBuilder = new QueryBuilder(webPage, findLawConfig.getTopicArray());
             ArrayList<Pagination> paginatedURLs = (ArrayList<Pagination>) queryBuilder.getPaginatedURLs();
 
             logger.info("Crawling the web pages....");
-            for (Pagination pagination: paginatedURLs) {
+            for (Pagination pagination : paginatedURLs) {
                 ArrayList<PaginatedPageCaseSet> paginatedPageCaseSets =
                         (ArrayList<PaginatedPageCaseSet>) pagination.getPaginatedPageCaseSet();
 

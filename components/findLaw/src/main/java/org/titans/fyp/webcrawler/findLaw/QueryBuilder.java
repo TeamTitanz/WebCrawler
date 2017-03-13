@@ -45,22 +45,16 @@ public final class QueryBuilder {
         return queryArray;
     }
 
-    public QueryBuilder(WebPage webpage) throws Exception {
-        this.webpage = webpage;
+    public QueryBuilder(WebPage webpage, List<String> topicArray) throws Exception {
 
+        this.webpage = webpage;
+        this.topicArray = topicArray;
         courtArray = new ArrayList();
-        topicArray = new ArrayList();
         queryArray = new ArrayList();
         paginationArray = new ArrayList();
 
         createCourtList(webpage);
-        
-        //manually set the Topics to cs_15 = Consumer Protection Law and 
-        //createTopicList(webpage);
-        topicArray.add("cs_15");
-        
         createQueryList();
-
         getPaginatedUrlList();
     }
 
