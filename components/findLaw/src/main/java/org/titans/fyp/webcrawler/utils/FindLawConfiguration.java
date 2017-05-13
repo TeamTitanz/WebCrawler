@@ -38,25 +38,35 @@ import java.util.List;
 public class FindLawConfiguration {
 
     private static Document document;
+    private static boolean getFromXml = true;
+    private List<String> topicArray;
+    private List<String> courtArray;
 
-    public FindLawConfiguration() throws ParserConfigurationException, IOException, SAXException {
+    public FindLawConfiguration(String[] args) throws ParserConfigurationException, IOException, SAXException {
 
-        ClassLoader classLoader = getClass().getClassLoader();
-        File fXmlFile = new File(classLoader.getResource("config.xml").getFile());
-        DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
-        DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
-        document = documentBuilder.parse(fXmlFile);
+        if (args.length == 0) {
+            ClassLoader classLoader = getClass().getClassLoader();
+            File fXmlFile = new File(classLoader.getResource("config.xml").getFile());
+            DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
+            document = documentBuilder.parse(fXmlFile);
+        } else {
+            topicArray.add("cs_" + args[0]);
+            getFromXml = false;
+        }
     }
 
     public List<String> getTopicArray() {
 
-        List<String> topicArray = new ArrayList();
-        String lines[] = document.getElementsByTagName("Cases").item(0).getTextContent().split("\\r?\\n");
+        if (getFromXml) {
+            topicArray = new ArrayList();
+            String lines[] = document.getElementsByTagName("Cases").item(0).getTextContent().split("\\r?\\n");
 
-        for (int i = 0; i < lines.length; i++) {
-            String temp = lines[i].replaceAll("\\s+", "");
-            if (!temp.equals("")) {
-                topicArray.add(temp);
+            for (int i = 0; i < lines.length; i++) {
+                String temp = lines[i].replaceAll("\\s+", "");
+                if (!temp.equals("")) {
+                    topicArray.add(temp);
+                }
             }
         }
 
@@ -65,7 +75,7 @@ public class FindLawConfiguration {
 
     public List<String> getCourtArray() {
 
-        List<String> courtArray = new ArrayList();
+        courtArray = new ArrayList();
         String lines[] = document.getElementsByTagName("Court").item(0).getTextContent().split("\\r?\\n");
 
         for (int i = 0; i < lines.length; i++) {

@@ -48,7 +48,7 @@ public class Initiator {
 
         try {
 
-            FindLawConfiguration findLawConfig = new FindLawConfiguration();
+            FindLawConfiguration findLawConfig = new FindLawConfiguration(args);
 
             Domain domain = new Domain(url);
             Anchor anchor = new Anchor(domain, url);
