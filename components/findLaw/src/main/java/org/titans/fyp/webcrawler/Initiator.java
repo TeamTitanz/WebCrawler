@@ -20,6 +20,9 @@
  ******************************************************************************/
 package org.titans.fyp.webcrawler;
 
+import com.twilio.Twilio;
+import com.twilio.rest.api.v2010.account.Message;
+import com.twilio.type.PhoneNumber;
 import org.apache.log4j.Logger;
 import org.titans.fyp.webcrawler.findLaw.PaginatedPageCaseSet;
 import org.titans.fyp.webcrawler.findLaw.Pagination;
@@ -39,6 +42,9 @@ import java.util.Map;
 public class Initiator {
 
     final static Logger logger = Logger.getLogger(Initiator.class);
+    // Find your Account Sid and Token at twilio.com/user/account
+    public static final String ACCOUNT_SID = "Your Account SID";
+    public static final String AUTH_TOKEN = "Your Auth Token";
 
     public static void main(String[] args) {
 
@@ -78,6 +84,14 @@ public class Initiator {
             }
 
             logger.info("Successfully completed.");
+
+            Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
+            Message message = Message.creator(new PhoneNumber("Your Number[To Number]"),
+                    new PhoneNumber("+13023437138"),
+                    ("CS_" + args[0] + " Crawling Successfully completed.")).create();
+
+            System.out.println(message.getSid());
+
 
         } catch (Exception e) {
             logger.error(e.getMessage());
