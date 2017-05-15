@@ -20,8 +20,9 @@
  ******************************************************************************/
 package org.titans.fyp.webcrawler.utils;
 
+import org.apache.log4j.Logger;
+import org.titans.fyp.webcrawler.database.DBConnection;
 import org.w3c.dom.Document;
-import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -37,6 +38,7 @@ import java.util.List;
  */
 public class FindLawConfiguration {
 
+    final static Logger logger = Logger.getLogger(FindLawConfiguration.class);
     private static Document document;
     private static boolean getFromXml = true;
     private List<String> topicArray;
@@ -51,7 +53,15 @@ public class FindLawConfiguration {
             DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
             document = documentBuilder.parse(fXmlFile);
         } else {
+            topicArray = new ArrayList();
             topicArray.add("cs_" + args[0]);
+            DBConnection.setDbCaseName("_" + args[0]);
+            logger.info("Law Category: cs_" + args[0]);
+            logger.info("Database Name: oblie_" + args[0]);
+            DBConnection.setDbUserName(args[1]);
+            logger.info("Database UserName: " + args[1]);
+            DBConnection.setDbPassword(args[2]);
+
             getFromXml = false;
         }
     }
