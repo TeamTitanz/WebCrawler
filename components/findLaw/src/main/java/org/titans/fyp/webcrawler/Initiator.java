@@ -24,6 +24,7 @@ import com.twilio.Twilio;
 import com.twilio.rest.api.v2010.account.Message;
 import com.twilio.type.PhoneNumber;
 import org.apache.log4j.Logger;
+import org.titans.fyp.webcrawler.corpusBuilder.CorpusBuilder;
 import org.titans.fyp.webcrawler.findLaw.PaginatedPageCaseSet;
 import org.titans.fyp.webcrawler.findLaw.Pagination;
 import org.titans.fyp.webcrawler.findLaw.QueryBuilder;
@@ -53,7 +54,6 @@ public class Initiator {
         String url = "http://caselaw.findlaw.com";
 
         try {
-
             FindLawConfiguration findLawConfig = new FindLawConfiguration(args);
 
             Domain domain = new Domain(url);
@@ -83,15 +83,23 @@ public class Initiator {
                 }
             }
 
-            logger.info("Successfully completed.");
+            String textMsg = "CS_";
+            if (args.length != 0) {
+                textMsg += args[0];
+            }
+            textMsg += " crawling completed.";
+            logger.info(textMsg);
+
+            logger.info("Starting Corpus builder...");
+            (new CorpusBuilder()).run("oblie_CS_" + args[0]);
+            textMsg += " Corpus building successful.";
 
             Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
-            Message message = Message.creator(new PhoneNumber("Your Number[To Number]"),
+            Message message = Message.creator(new PhoneNumber("Your Number(To Number)"),
                     new PhoneNumber("+13023437138"),
-                    ("CS_" + args[0] + " Crawling Successfully completed.")).create();
-
-            System.out.println(message.getSid());
-
+                    textMsg).create();
+            logger.info(message.getSid());
+            logger.info("oblie_CS_" + args[0] + ".txt words corpus building successful.");
 
         } catch (Exception e) {
             logger.error(e.getMessage());
