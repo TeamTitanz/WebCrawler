@@ -31,27 +31,48 @@ import java.sql.SQLException;
 public class DBConnection {
     private static DBConnection dbConnection;
     private Connection connection;
+    private static String dbCaseName = "";
+    private static String dbUserName = "root";
+    private static String dbPassword = null;
 
-    private  DBConnection() throws ClassNotFoundException, SQLException {
+    private DBConnection() throws ClassNotFoundException, SQLException {
         Class.forName("com.mysql.jdbc.Driver");
-        connection =  (Connection) DriverManager.getConnection(
-                "jdbc:mysql://166.62.27.168/oblie?useUnicode=true&characterEncoding=UTF-8"
+        connection = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/oblie" + dbCaseName
                 //database access credentials
-                ,"fyp","nikonD7100");
+                , dbUserName, dbPassword);
     }
 
-    public Connection getConnection(){
+    public static void setDbCaseName(String dbCaseName) {
+        DBConnection.dbCaseName = dbCaseName;
+    }
+
+    public static void setDbUserName(String dbUserName) {
+        DBConnection.dbUserName = dbUserName;
+    }
+
+    public static void setDbPassword(String dbPassword) {
+        DBConnection.dbPassword = dbPassword;
+    }
+
+    public Connection getConnection() {
         return connection;
     }
 
-    public static DBConnection getDBConnection() throws ClassNotFoundException, SQLException{
-        if(dbConnection == null){
+    public static DBConnection getDBConnection() throws ClassNotFoundException, SQLException {
+        if (dbConnection == null) {
             dbConnection = new DBConnection(); //make new database
         }
         return dbConnection;
     }
 
-    public static Connection getConnectionToDB() throws ClassNotFoundException, SQLException{
-        return getDBConnection().getConnection();
+    public static Connection getConnectionToDB() {
+        try {
+            return getDBConnection().getConnection();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }
