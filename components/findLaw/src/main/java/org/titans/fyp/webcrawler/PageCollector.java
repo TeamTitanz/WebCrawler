@@ -265,10 +265,8 @@ public class PageCollector {
                             case_year = items[1].replace(")", "");
                             SimpleDateFormat formatter = new SimpleDateFormat("yyyy");
                             formatter.parse(case_year);
+                            case_year = lawCase.getDecided_date().toString().split("-")[0];
                         } catch (Exception ex) {
-                            if (lawCase.getDecided_date() != null) {
-                                case_year = Integer.toString(lawCase.getDecided_date().getYear());
-                            }
                         }
 
                         lawCase.setYear(case_year);
@@ -313,6 +311,12 @@ public class PageCollector {
             }
 
             lawCase.setContent(content.replace("'", "''"));
+            if (lawCase.getYear() == null && lawCase.getDecided_date() != null) {
+                try {
+                    lawCase.setYear(lawCase.getDecided_date().toString().split("-")[0]);
+                } catch (NumberFormatException e) {
+                }
+            }
             CaseController.addCase(lawCase, footNotes, appellateInformation,
                     judges, summaryPageURL, readPageURL);
 
