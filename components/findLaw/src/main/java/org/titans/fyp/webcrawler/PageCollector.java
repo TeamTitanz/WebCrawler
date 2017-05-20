@@ -50,8 +50,6 @@ public class PageCollector {
 
     public static void Crawl(String summaryPageURL, String readPageURL) {
 
-        logger.info("URL:" + summaryPageURL + "," + readPageURL);
-
         try {
             Case lawCase = new Case();
             ArrayList<AppellateInformation> appellateInformation = new ArrayList<AppellateInformation>();
@@ -65,7 +63,6 @@ public class PageCollector {
             WebPage summaryWebPage = new WebPage(summaryAnchor);
             summaryWebPage.getDocumentFromWeb();
             Document summaryDocument = summaryWebPage.getDocument();
-
 
             //get <p> tags in document
             Elements paragraphs = summaryDocument.select("p");
