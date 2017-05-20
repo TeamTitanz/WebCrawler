@@ -148,6 +148,7 @@ public class CorpusBuilder {
             for (CoreLabel token : sentence.get(CoreAnnotations.TokensAnnotation.class)) {
                 // this is the lemmatized version of the token
                 String word = token.get(CoreAnnotations.LemmaAnnotation.class);
+                word = word.toLowerCase();
                 if (String.valueOf(word).chars().allMatch(Character::isLetter)) {
                     bw_lt.write(String.valueOf(word) + " ");
                 }
@@ -159,7 +160,7 @@ public class CorpusBuilder {
 
         // creates a StanfordCoreNLP object, with POS tagging, lemmatization, NER, parsing
         Properties props = new Properties();
-        props.setProperty("annotators", "tokenize, ssplit, pos");
+        props.setProperty("annotators", "tokenize, ssplit");
         StanfordCoreNLP pipeline = new StanfordCoreNLP(props);
 
         // create an empty Annotation just with the given text
@@ -176,6 +177,7 @@ public class CorpusBuilder {
             for (CoreLabel token : sentence.get(CoreAnnotations.TokensAnnotation.class)) {
                 // this is the lemmatized version of the token
                 String word = token.get(CoreAnnotations.LemmaAnnotation.class);
+                word = word.toLowerCase();
                 if (String.valueOf(word).chars().allMatch(Character::isLetter)) {
                     bw_rt.write(String.valueOf(word) + " ");
                 }
