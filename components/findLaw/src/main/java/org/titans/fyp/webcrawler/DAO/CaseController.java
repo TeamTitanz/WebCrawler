@@ -41,29 +41,42 @@ public class CaseController {
 
         String sql = "INSERT INTO cases (case_no, court, party_1, party_2, argued_date, decided_date, content, " +
                 "summary, counsel, year) VALUES('"
-                + caseToDB.getCase_no()+ "','" + caseToDB.getCourt()+ "','" +
-                caseToDB.getParty_1()+ "','" + caseToDB.getParty_2()+ "','"+
-                caseToDB.getArgued_date()+"','"+ caseToDB.getDecided_date()+"','" +
-                caseToDB.getContent()+ "','" + caseToDB.getSummary() + "','" +
-                caseToDB.getCounsel() + "','" + caseToDB.getYear() +"')";
+                + caseToDB.getCase_no() + "','" + caseToDB.getCourt() + "','" +
+                caseToDB.getParty_1() + "','" + caseToDB.getParty_2() + "','" +
+                caseToDB.getArgued_date() + "','" + caseToDB.getDecided_date() + "','" +
+                caseToDB.getContent() + "','" + caseToDB.getSummary() + "','" +
+                caseToDB.getCounsel() + "','" + caseToDB.getYear() + "')";
 
-        int res = DBHandler.setData(sql, DBConnection.getConnectionToDB());
-        
+        int res;
+        try {
+            res = DBHandler.setData(sql, DBConnection.getConnectionToDB());
+        } catch (Exception ex) {
+            //TODO: implement using prepared statement
+            sql = "INSERT INTO cases (case_no, court, party_1, party_2, argued_date, decided_date, content, " +
+                    "summary, counsel, year) VALUES('"
+                    + caseToDB.getCase_no().replaceAll("'", " ").replaceAll(";", " ") + "','" + caseToDB.getCourt().replaceAll("'", " ").replaceAll(";", " ") + "','" +
+                    caseToDB.getParty_1().replaceAll("'", " ").replaceAll(";", " ") + "','" + caseToDB.getParty_2().replaceAll("'", " ").replaceAll(";", " ") + "','" +
+                    caseToDB.getArgued_date() + "','" + caseToDB.getDecided_date() + "','" +
+                    caseToDB.getContent().replaceAll("'", " ").replaceAll(";", " ") + "','" + caseToDB.getSummary().replaceAll("'", " ").replaceAll(";", " ") + "','" +
+                    caseToDB.getCounsel().replaceAll("'", " ").replaceAll(";", " ") + "','" + caseToDB.getYear().replaceAll("'", " ").replaceAll(";", " ") + "')";
+
+            res = DBHandler.setData(sql, DBConnection.getConnectionToDB());
+        }
         //retrieve latestId
         int latestId = getLatestId();
-        
+
         //add appellateInformation to database one by one
         for(AppellateInformation  aI: appellateInformation) {
             aI.setCaseId(latestId);
             AppellateInformationController.addAppellateInformation(aI);
         }
-        
+
         //add FootNotes to database one by one
         for(FootNotes  fn: footNotes) {
             fn.setCaseId(latestId);
             FootNoteController.addFootNotes(fn);
         }
-        
+
         //add Judges to database one by one
         for(Judge j: judges) {
             j.setCaseId(latestId);
@@ -72,10 +85,10 @@ public class CaseController {
 
         //add urls to the database
         ContentURLsController.addURLs(summaryPageURL, readPageURL, latestId);
-        
+
         return res;
     }
-    
+
     //TODO: implement using prepared statement
     private static int getLatestId() throws SQLException, ClassNotFoundException {
         String sql = "SELECT id from cases GROUP BY id DESC LIMIT 1";
