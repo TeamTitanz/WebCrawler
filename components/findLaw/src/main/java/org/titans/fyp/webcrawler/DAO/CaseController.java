@@ -41,11 +41,11 @@ public class CaseController {
 
         String sql = "INSERT INTO cases (case_no, court, party_1, party_2, argued_date, decided_date, content, " +
                 "summary, counsel, year) VALUES('"
-                + caseToDB.getCase_no()+ "','" + caseToDB.getCourt()+ "','" +
-                caseToDB.getParty_1()+ "','" + caseToDB.getParty_2()+ "','"+
+                + caseToDB.getCase_no().replaceAll("'", " ").replaceAll(";", " ") + "','" + caseToDB.getCourt().replaceAll("'", " ").replaceAll(";", " ") + "','" +
+                caseToDB.getParty_1().replaceAll("'", " ").replaceAll(";", " ") + "','" + caseToDB.getParty_2().replaceAll("'", " ").replaceAll(";", " ") + "','" +
                 caseToDB.getArgued_date()+"','"+ caseToDB.getDecided_date()+"','" +
-                caseToDB.getContent()+ "','" + caseToDB.getSummary() + "','" +
-                caseToDB.getCounsel() + "','" + caseToDB.getYear() +"')";
+                caseToDB.getContent().replaceAll("'", " ").replaceAll(";", " ") + "','" + caseToDB.getSummary().replaceAll("'", " ").replaceAll(";", " ") + "','" +
+                caseToDB.getCounsel().replaceAll("'", " ").replaceAll(";", " ") + "','" + caseToDB.getYear().replaceAll("'", " ").replaceAll(";", " ") + "')";
 
         int res = DBHandler.setData(sql, DBConnection.getConnectionToDB());
         
