@@ -4,15 +4,14 @@ import edu.stanford.nlp.ling.CoreAnnotations;
 import edu.stanford.nlp.ling.CoreLabel;
 import edu.stanford.nlp.pipeline.Annotation;
 import edu.stanford.nlp.pipeline.StanfordCoreNLP;
+import edu.stanford.nlp.process.CoreLabelTokenFactory;
+import edu.stanford.nlp.process.PTBTokenizer;
 import edu.stanford.nlp.util.CoreMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.titans.fyp.webcrawler.database.DBConnection;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
@@ -22,11 +21,11 @@ public class CorpusBuilder {
 
     private static Logger log = LoggerFactory.getLogger(CorpusBuilder.class);
     private static DBConnection dbconnection = null;
-    static BufferedWriter bw_lt = null;
-    static FileWriter fw_lt = null;
+    private static BufferedWriter bw_lt = null;
+    private static FileWriter fw_lt = null;
 
-    static BufferedWriter bw_rt = null;
-    static FileWriter fw_rt = null;
+    private static BufferedWriter bw_rt = null;
+    private static FileWriter fw_rt = null;
 
     public void run(String txtFileName) {
 
@@ -148,9 +147,10 @@ public class CorpusBuilder {
             for (CoreLabel token : sentence.get(CoreAnnotations.TokensAnnotation.class)) {
                 // this is the lemmatized version of the token
                 String word = token.get(CoreAnnotations.LemmaAnnotation.class);
-                word = word.toLowerCase();
                 if (String.valueOf(word).chars().allMatch(Character::isLetter)) {
-                    bw_lt.write(String.valueOf(word) + " ");
+                    if (word != null) {
+                        bw_lt.write(String.valueOf(word.toLowerCase()) + " ");
+                    }
                 }
             }
         }
@@ -158,29 +158,13 @@ public class CorpusBuilder {
 
     public static void rawTextWriteToFile(String text) throws IOException {
 
-        // creates a StanfordCoreNLP object, with POS tagging, lemmatization, NER, parsing
-        Properties props = new Properties();
-        props.setProperty("annotators", "tokenize, ssplit");
-        StanfordCoreNLP pipeline = new StanfordCoreNLP(props);
-
-        // create an empty Annotation just with the given text
-        Annotation document = new Annotation(text);
-
-        // run all Annotators on this text
-        pipeline.annotate(document);
-
-        List<CoreMap> sentences = document.get(CoreAnnotations.SentencesAnnotation.class);
-
-        for (CoreMap sentence : sentences) {
-            // traversing the words in the current sentence
-            // a CoreLabel is a CoreMap with additional token-specific methods
-            for (CoreLabel token : sentence.get(CoreAnnotations.TokensAnnotation.class)) {
-                // this is the lemmatized version of the token
-                String word = token.get(CoreAnnotations.LemmaAnnotation.class);
-                word = word.toLowerCase();
-                if (String.valueOf(word).chars().allMatch(Character::isLetter)) {
-                    bw_rt.write(String.valueOf(word) + " ");
-                }
+        // creates a StanfordCoreNLP object, with Tokenizer
+        PTBTokenizer<CoreLabel> ptbt = new PTBTokenizer<CoreLabel>(new StringReader(text),
+                new CoreLabelTokenFactory(), "");
+        for (CoreLabel label; ptbt.hasNext(); ) {
+            label = ptbt.next();
+            if (String.valueOf(label).chars().allMatch(Character::isLetter)) {
+                bw_rt.write(String.valueOf(label).toLowerCase() + " ");
             }
         }
     }
