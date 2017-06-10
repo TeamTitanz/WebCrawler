@@ -47,7 +47,7 @@ public class test4 {
             // traversing the words in the current sentence
             // a CoreLabel is a CoreMap with additional token-specific methods
             for (CoreLabel token : sentence.get(CoreAnnotations.TokensAnnotation.class)) {
-                // this is the lemmatized version of the token
+
                 String word = token.value();
                 if (String.valueOf(word).chars().allMatch(Character::isLetter)) {
                     if (word != null) {
